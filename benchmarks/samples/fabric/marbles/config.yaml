@@ -18,6 +18,7 @@ test:
     type: local
     number: 5
   rounds:
+  # TODO add round for transferMarblesBasedOnColor and getMarblesByRange
   - label: init
     txNumber:
     - 500
@@ -27,6 +28,7 @@ test:
         tps: 25
     callback: benchmarks/samples/fabric/marbles/init.js
   - label: transferMarblesBasedOnColor
+<<<<<<< HEAD
     txNumber:
     - 28
     rateControl:
@@ -35,12 +37,15 @@ test:
         tps: 5
     callback: benchmarks/samples/fabric/marbles/transferMarblesBasedOnColor.js
   - label: query
+=======
+>>>>>>> c3782f0ad6ab1d7810ff76a38dcf1e38d7a0dd4e
     txNumber:
     - 5
     rateControl:
     - type: fixed-rate
       opts:
         tps: 5
+<<<<<<< HEAD
     callback: benchmarks/samples/fabric/marbles/query.js
   - label: getHistoryForMarble
     txNumber:
@@ -58,6 +63,25 @@ test:
       opts:
         tps: 5
     callback: benchmarks/samples/fabric/marbles/delete.js
+=======
+    callback: benchmarks/samples/fabric/marbles/transferMarblesBasedOnColor.js
+   - label: query
+     txNumber:
+     - 15
+     rateControl:
+     - type: fixed-rate
+       opts:
+         tps: 5
+     callback: benchmarks/samples/fabric/marbles/query.js
+   - label: getHistoryForMarble
+     txNumber:
+     - 15
+     rateControl:
+     - type: fixed-rate
+       opts:
+         tps: 5
+     callback: benchmarks/samples/fabric/marbles/getHistoryForMarble.js
+>>>>>>> c3782f0ad6ab1d7810ff76a38dcf1e38d7a0dd4e
 monitor:
   type:
   - docker

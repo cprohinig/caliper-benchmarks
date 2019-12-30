@@ -14,15 +14,9 @@
 
 'use strict';
 
-<<<<<<< HEAD
-module.exports.info  = 'Transfer marbles.';
-=======
 module.exports.info  = 'Querying marbles.';
->>>>>>> c3782f0ad6ab1d7810ff76a38dcf1e38d7a0dd4e
 
 let txIndex = 0;
-let colors = ['red', 'blue', 'green', 'black', 'white', 'pink', 'rainbow'];
-let owners = ['Alice', 'Bob', 'Claire', 'David'];
 let bc, contx;
 module.exports.init = function(blockchain, context, args) {
     bc = blockchain;
@@ -33,46 +27,25 @@ module.exports.init = function(blockchain, context, args) {
 
 module.exports.run = function() {
     txIndex++;
-    let marbleOwner = owners[txIndex % owners.length];
-<<<<<<< HEAD
-    let marbleColor = colors[txIndex % colors.length];
-=======
-    let color = colors[txIndex % colors.length];
->>>>>>> c3782f0ad6ab1d7810ff76a38dcf1e38d7a0dd4e
+    let marbleName = 'marble_' + txIndex.toString() + '_' + process.pid.toString();
     let args;
 
     if (bc.bcType === 'fabric') {
         args = {
-            chaincodeFunction: 'transferMarblesBasedOnColor',
-<<<<<<< HEAD
-            chaincodeArguments: [marbleColor, marbleOwner]
-=======
-            chaincodeArguments: [color, marbleOwner]
->>>>>>> c3782f0ad6ab1d7810ff76a38dcf1e38d7a0dd4e
+            chaincodeFunction: 'getHistoryForMarble',
+            chaincodeArguments: [marbleName]
         };
     } else {
         args = {
-            verb: 'transferMarblesBasedOnColor',
-<<<<<<< HEAD
-            color: marbleColor,
-=======
-            color: color,
->>>>>>> c3782f0ad6ab1d7810ff76a38dcf1e38d7a0dd4e
-            owner: marbleOwner
+            verb: 'getHistoryForMarble',
+            marbleName: marbleName
         };
     }
 
-<<<<<<< HEAD
-=======
     // TODO: until Fabric query is implemented, use invoke
->>>>>>> c3782f0ad6ab1d7810ff76a38dcf1e38d7a0dd4e
     return bc.invokeSmartContract(contx, 'marbles', 'v1', args, 120);
 };
 
 module.exports.end = function() {
     return Promise.resolve();
-<<<<<<< HEAD
 };
-=======
-};
->>>>>>> c3782f0ad6ab1d7810ff76a38dcf1e38d7a0dd4e
