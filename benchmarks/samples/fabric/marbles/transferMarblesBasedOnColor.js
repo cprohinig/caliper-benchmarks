@@ -14,9 +14,10 @@
 
 'use strict';
 
-module.exports.info  = 'Querying marbles.';
+module.exports.info  = 'Transfer marbles.';
 
 let txIndex = 0;
+let colors = ['red', 'blue', 'green', 'black', 'white', 'pink', 'rainbow'];
 let owners = ['Alice', 'Bob', 'Claire', 'David'];
 let bc, contx;
 module.exports.init = function(blockchain, context, args) {
@@ -29,16 +30,18 @@ module.exports.init = function(blockchain, context, args) {
 module.exports.run = function() {
     txIndex++;
     let marbleOwner = owners[txIndex % owners.length];
+    let marbleColor = colors[txIndex % colors.length];
     let args;
 
     if (bc.bcType === 'fabric') {
         args = {
-            chaincodeFunction: 'queryMarblesByOwner',
-            chaincodeArguments: [marbleOwner]
+            chaincodeFunction: 'transferMarblesBasedOnColor',
+            chaincodeArguments: [marbleColor, marbleOwner]
         };
     } else {
         args = {
-            verb: 'queryMarblesByOwner',
+            verb: 'transferMarblesBasedOnColor',
+            color: marbleColor,
             owner: marbleOwner
         };
     }

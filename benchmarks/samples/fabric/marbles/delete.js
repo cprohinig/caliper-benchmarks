@@ -14,10 +14,9 @@
 
 'use strict';
 
-module.exports.info  = 'Querying marbles.';
+module.exports.info  = 'Delete marble.';
 
 let txIndex = 0;
-let owners = ['Alice', 'Bob', 'Claire', 'David'];
 let bc, contx;
 module.exports.init = function(blockchain, context, args) {
     bc = blockchain;
@@ -28,18 +27,18 @@ module.exports.init = function(blockchain, context, args) {
 
 module.exports.run = function() {
     txIndex++;
-    let marbleOwner = owners[txIndex % owners.length];
+    let marbleName = 'marble_' + txIndex.toString() + '_' + process.pid.toString();
     let args;
 
     if (bc.bcType === 'fabric') {
         args = {
-            chaincodeFunction: 'queryMarblesByOwner',
-            chaincodeArguments: [marbleOwner]
+            chaincodeFunction: 'delete',
+            chaincodeArguments: [marbleName]
         };
     } else {
         args = {
-            verb: 'queryMarblesByOwner',
-            owner: marbleOwner
+            verb: 'delete',
+            owner: marbleName
         };
     }
 

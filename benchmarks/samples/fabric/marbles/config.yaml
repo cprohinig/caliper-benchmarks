@@ -26,14 +26,38 @@ test:
       opts:
         tps: 25
     callback: benchmarks/samples/fabric/marbles/init.js
+  - label: transferMarblesBasedOnColor
+    txNumber:
+    - 28
+    rateControl:
+    - type: fixed-rate
+      opts:
+        tps: 5
+    callback: benchmarks/samples/fabric/marbles/transferMarblesBasedOnColor.js
   - label: query
     txNumber:
-    - 15
+    - 5
     rateControl:
     - type: fixed-rate
       opts:
         tps: 5
     callback: benchmarks/samples/fabric/marbles/query.js
+  - label: getHistoryForMarble
+    txNumber:
+     - 500
+    rateControl:
+    - type: fixed-rate
+      opts:
+        tps: 5
+    callback: benchmarks/samples/fabric/marbles/getHistoryForMarble.js
+  - label: delete
+    txNumber:
+    - 500
+    rateControl:
+    - type: fixed-rate
+      opts:
+        tps: 5
+    callback: benchmarks/samples/fabric/marbles/delete.js
 monitor:
   type:
   - docker

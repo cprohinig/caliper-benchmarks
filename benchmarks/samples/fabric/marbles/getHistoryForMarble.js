@@ -14,10 +14,9 @@
 
 'use strict';
 
-module.exports.info  = 'Querying marbles.';
+module.exports.info  = 'Get History for marble.';
 
 let txIndex = 0;
-let owners = ['Alice', 'Bob', 'Claire', 'David'];
 let bc, contx;
 module.exports.init = function(blockchain, context, args) {
     bc = blockchain;
@@ -28,21 +27,22 @@ module.exports.init = function(blockchain, context, args) {
 
 module.exports.run = function() {
     txIndex++;
-    let marbleOwner = owners[txIndex % owners.length];
+    let marbleName = 'marble_' + txIndex.toString() + '_' + process.pid.toString();
     let args;
 
     if (bc.bcType === 'fabric') {
         args = {
-            chaincodeFunction: 'queryMarblesByOwner',
-            chaincodeArguments: [marbleOwner]
+            chaincodeFunction: 'getHistoryForMarble',
+            chaincodeArguments: [marbleName]
         };
     } else {
         args = {
-            verb: 'queryMarblesByOwner',
-            owner: marbleOwner
+            verb: 'getHistoryForMarble',
+            marbleName: marbleName
         };
     }
 
+    // TODO: until Fabric query is implemented, use invoke
     return bc.invokeSmartContract(contx, 'marbles', 'v1', args, 120);
 };
 
