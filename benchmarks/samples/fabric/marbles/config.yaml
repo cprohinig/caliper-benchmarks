@@ -26,14 +26,22 @@ test:
       opts:
         tps: 25
     callback: benchmarks/samples/fabric/marbles/init.js
-  - label: query
+  - label: transferMarblesBasedOnColor
     txNumber:
     - 15
     rateControl:
     - type: fixed-rate
       opts:
         tps: 5
-    callback: benchmarks/samples/fabric/marbles/query.js
+    callback: benchmarks/samples/fabric/marbles/transferMarblesBasedOnColor.js
+   - label: query
+     txNumber:
+     - 15
+     rateControl:
+     - type: fixed-rate
+       opts:
+         tps: 5
+     callback: benchmarks/samples/fabric/marbles/query.js
 monitor:
   type:
   - docker
