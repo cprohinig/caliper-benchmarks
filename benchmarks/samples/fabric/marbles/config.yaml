@@ -18,6 +18,7 @@ test:
     type: local
     number: 5
   rounds:
+  # TODO add round for transferMarblesBasedOnColor and getMarblesByRange  
   - label: init
     txNumber:
     - 500
