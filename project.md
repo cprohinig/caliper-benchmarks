@@ -1,14 +1,14 @@
 ## Prerequisites:
 
-node-gyp, python2, make, g++ and git
-Node.js v8.X LTS or v10.X LTS
-Docker and Docker Compose
+node-gyp, python2, make, g++ and git  
+Node.js v8.X LTS or v10.X LTS  
+Docker and Docker Compose  
 
 ## Install:
 
-npm init -y
-npm install --only=prod @hyperledger/caliper-cli
-npx caliper bind --caliper-bind-sut fabric --caliper-bind-sdk 1.4.1
+npm init -y  
+npm install --only=prod @hyperledger/caliper-cli  
+npx caliper bind --caliper-bind-sut fabric --caliper-bind-sdk 1.4.1  
 
 ## Run benchmark:
 
