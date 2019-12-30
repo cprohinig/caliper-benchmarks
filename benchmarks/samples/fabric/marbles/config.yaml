@@ -43,7 +43,7 @@ test:
        opts:
          tps: 5
      callback: benchmarks/samples/fabric/marbles/query.js
-   - label: query
+   - label: getHistoryForMarble
      txNumber:
      - 15
      rateControl:
