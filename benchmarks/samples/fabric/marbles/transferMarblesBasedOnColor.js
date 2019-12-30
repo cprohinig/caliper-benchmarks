@@ -30,7 +30,7 @@ module.exports.init = function(blockchain, context, args) {
 module.exports.run = function() {
     txIndex++;
     let marbleOwner = owners[txIndex % owners.length];
-    let color = owners[txIndex % colors.length];
+    let color = colors[txIndex % colors.length];
     let args;
 
     if (bc.bcType === 'fabric') {
