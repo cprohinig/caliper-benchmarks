@@ -7,6 +7,7 @@ launch.json
 
 # No html
 *.html
+!caliperReport.html
 
 # No mac files
 .DS_Store

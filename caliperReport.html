@@ -1,0 +1,619 @@
+<!doctype html>
+<html>
+<head>
+    <title>Caliper Report</title>
+    <meta charset="UTF-8"/>
+    <style type="text/css">
+        .left-column {
+            position: fixed;
+            width:20%;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -khtml-border-radius: 5px;
+        }
+        .right-column {
+            margin-left: 22%;
+            width:60%;
+        }
+        .left-column ul,h2 {
+            display: block;
+            margin: 10px;
+            padding: 0;
+            list-style: none;
+        }
+        .left-column ul{
+            border-top: 1px solid #d9d9d9;
+            font-size: 14px;
+        }
+        .left-column li{
+            margin-bottom: 5px;
+            color: #5e6b73;
+        }
+        .left-column h3 {
+            border-left: 5px solid #009a61;
+        }
+        .right-column>div {
+            border-top: 1px solid #d9d9d9;
+        }
+        .right-column table {
+            font-family: verdana,arial,sans-serif;
+            font-size:11px;
+            color:#333333;
+            border-width: 1px;
+            border-color: #666666;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+        .right-column th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #f2f2f2;
+        }
+        .right-column td {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #ffffff;
+        }
+        .tag {
+            display: inline-block;
+            margin-bottom: 10px;
+            padding: 5px 10px;
+            background-color: rgba(1,126,102,0.08);
+            font-family: verdana,arial,sans-serif;
+            font-size:11px;
+            color: #017E66;
+            text-align: center;
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -khtml-border-radius: 5px;
+        }
+        pre {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -khtml-border-radius: 5px;
+            overflow:auto;
+            max-height:300px;
+            font-size:12px;
+        }
+    </style>
+</head>
+<body>
+
+<main>
+    <div class="left-column">
+        <h2>Caliper Report</h2>
+        <ul>
+            <h3>&nbspBasic information</h3>
+            <li><strong>DLT: &nbsp</strong><span>fabric</span></li>
+            <li><strong>Benchmark: &nbsp</strong><span></span></li>
+            <li><strong>Description: &nbsp</strong><span></span></li>
+            <li><strong>Test Rounds: &nbsp</strong><span>5</span></li>
+            <li><a href="#benchmarkInfo">Details</a></li>
+        </ul>
+        <ul>
+            <h3>&nbspBenchmark results</h3>
+            <li><a href="#benchmarksummary">Summary</a></li>
+                <li><a href="#init">init</a></li>
+                <li><a href="#transferMarblesBasedOnColor">transferMarblesBasedOnColor</a></li>
+                <li><a href="#query">query</a></li>
+                <li><a href="#getHistoryForMarble">getHistoryForMarble</a></li>
+                <li><a href="#delete">delete</a></li>
+        </ul>
+        <ul>
+            <h3>&nbspSystem Under Test</h3>
+            <li><strong>Version: &nbsp</strong><span>1.4.1</span></li>
+            <li><strong>Size: &nbsp</strong><span>2 Orgs with 1 Peer</span></li>
+            <li><strong>Orderer: &nbsp</strong><span>Solo,</span></li>
+            <li><strong>Distribution: &nbsp</strong><span>Single Host</span></li>
+            <li><strong>StateDB: &nbsp</strong><span>GoLevelDB</span></li>
+            <li><a href="#sutdetails">Details</a></li>
+        </ul>
+    </div>
+
+    <div class="right-column">
+        <div id="benchmarksummary">
+            <table>
+                <h3>Summary</h3>
+                <tr>
+                     <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
+                </tr>
+
+                <tr>
+                     <td>init</td> <td>500</td> <td>0</td> <td>25.2</td> <td>0.28</td> <td>0.05</td> <td>0.16</td> <td>25.2</td>
+                </tr>
+                <tr>
+                     <td>transferMarblesBasedOnColor</td> <td>8</td> <td>20</td> <td>0.8</td> <td>0.55</td> <td>0.40</td> <td>0.48</td> <td>0.2</td>
+                </tr>
+                <tr>
+                     <td>query</td> <td>0</td> <td>5</td> <td>625.0</td> <td>0.00</td> <td>100000.00</td> <td>NaN</td> <td>0.0</td>
+                </tr>
+                <tr>
+                     <td>getHistoryForMarble</td> <td>500</td> <td>0</td> <td>5.0</td> <td>0.32</td> <td>0.27</td> <td>0.30</td> <td>5.0</td>
+                </tr>
+                <tr>
+                     <td>delete</td> <td>500</td> <td>0</td> <td>5.0</td> <td>0.32</td> <td>0.28</td> <td>0.30</td> <td>5.0</td>
+                </tr>
+            </table>
+        </div>
+        <div id="init">
+            <h3>init</h3>
+            <p></p>
+                <h3>round 0</h3>
+                <strong class="tag">Performance metrics</strong>
+                <table>
+                    <tr>
+                         <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
+                    </tr>
+                    <tr>
+                         <td>init</td> <td>500</td> <td>0</td> <td>25.2</td> <td>0.28</td> <td>0.05</td> <td>0.16</td> <td>25.2</td>
+                    </tr>
+                </table>
+                <strong class="tag">Resource consumption</strong>
+                <table>
+                    <tr>
+                    <table>
+                        <tr>
+                             <th>Type</th> <th>Name</th> <th>Memory(max)</th> <th>Memory(avg)</th> <th>CPU% (max)</th> <th>CPU% (avg)</th> <th>Traffic In</th> <th>Traffic Out</th> <th>Disc Read</th> <th>Disc Write</th>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org1.example.com-smallbank-v0</td> <td>5.7MB</td> <td>5.7MB</td> <td>0.00</td> <td>0.00</td> <td>140B</td> <td>0B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org2.example.com-smallbank-v0</td> <td>5.9MB</td> <td>5.9MB</td> <td>0.00</td> <td>0.00</td> <td>70B</td> <td>0B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org1.example.com-simple-v0</td> <td>5.5MB</td> <td>5.5MB</td> <td>0.00</td> <td>0.00</td> <td>0B</td> <td>0B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org2.example.com-simple-v0</td> <td>5.5MB</td> <td>5.5MB</td> <td>0.00</td> <td>0.00</td> <td>0B</td> <td>0B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org1.example.com-drm-v0</td> <td>5.5MB</td> <td>5.4MB</td> <td>0.00</td> <td>0.00</td> <td>70B</td> <td>0B</td> <td>32.0KB</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org2.example.com-drm-v0</td> <td>5.4MB</td> <td>5.4MB</td> <td>0.19</td> <td>0.02</td> <td>70B</td> <td>0B</td> <td>84.0KB</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org1.example.com-marbles-v0</td> <td>6.4MB</td> <td>6.1MB</td> <td>5.38</td> <td>3.37</td> <td>930.1KB</td> <td>465.0KB</td> <td>488.0KB</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org2.example.com-marbles-v0</td> <td>6.4MB</td> <td>6.1MB</td> <td>4.72</td> <td>3.48</td> <td>938.7KB</td> <td>474.5KB</td> <td>328.0KB</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>peer0.org2.example.com</td> <td>199.3MB</td> <td>197.3MB</td> <td>32.62</td> <td>24.92</td> <td>3.1MB</td> <td>1.8MB</td> <td>128.0KB</td> <td>3.3MB</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>peer0.org1.example.com</td> <td>172.2MB</td> <td>166.4MB</td> <td>30.91</td> <td>23.64</td> <td>3.1MB</td> <td>2.4MB</td> <td>168.0KB</td> <td>3.3MB</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>ca.org2.example.com</td> <td>11.9MB</td> <td>11.9MB</td> <td>0.00</td> <td>0.00</td> <td>0B</td> <td>0B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>ca.org1.example.com</td> <td>9.1MB</td> <td>9.1MB</td> <td>0.00</td> <td>0.00</td> <td>0B</td> <td>0B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>orderer.example.com</td> <td>16.3MB</td> <td>14.4MB</td> <td>9.79</td> <td>7.87</td> <td>2.2MB</td> <td>4.0MB</td> <td>480.0KB</td> <td>2.2MB</td>
+                        </tr>
+                    </table>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                    <table>
+                        <tr>
+                             <th>Type</th> <th>Name</th> <th>Memory(max)</th> <th>Memory(avg)</th> <th>CPU% (max)</th> <th>CPU% (avg)</th>
+                        </tr>
+                        <tr>
+                             <td>Process</td> <td>node fabricClientWorker.js(avg)</td> <td>165.9MB</td> <td>164.5MB</td> <td>15.12</td> <td>5.41</td>
+                        </tr>
+                    </table>
+                    </tr>
+                </table>
+        </div>
+        <div id="transferMarblesBasedOnColor">
+            <h3>transferMarblesBasedOnColor</h3>
+            <p></p>
+                <h3>round 0</h3>
+                <strong class="tag">Performance metrics</strong>
+                <table>
+                    <tr>
+                         <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
+                    </tr>
+                    <tr>
+                         <td>transferMarblesBasedOnColor</td> <td>8</td> <td>20</td> <td>0.8</td> <td>0.55</td> <td>0.40</td> <td>0.48</td> <td>0.2</td>
+                    </tr>
+                </table>
+                <strong class="tag">Resource consumption</strong>
+                <table>
+                    <tr>
+                    <table>
+                        <tr>
+                             <th>Type</th> <th>Name</th> <th>Memory(max)</th> <th>Memory(avg)</th> <th>CPU% (max)</th> <th>CPU% (avg)</th> <th>Traffic In</th> <th>Traffic Out</th> <th>Disc Read</th> <th>Disc Write</th>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org1.example.com-smallbank-v0</td> <td>5.7MB</td> <td>5.7MB</td> <td>0.00</td> <td>0.00</td> <td>140B</td> <td>0B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org2.example.com-smallbank-v0</td> <td>5.9MB</td> <td>5.9MB</td> <td>0.00</td> <td>0.00</td> <td>140B</td> <td>0B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org1.example.com-simple-v0</td> <td>5.5MB</td> <td>5.5MB</td> <td>0.04</td> <td>0.00</td> <td>70B</td> <td>0B</td> <td>4.0KB</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org2.example.com-simple-v0</td> <td>5.5MB</td> <td>5.5MB</td> <td>0.00</td> <td>0.00</td> <td>140B</td> <td>0B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org1.example.com-drm-v0</td> <td>5.5MB</td> <td>5.5MB</td> <td>0.00</td> <td>0.00</td> <td>70B</td> <td>0B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org2.example.com-drm-v0</td> <td>5.4MB</td> <td>5.4MB</td> <td>0.00</td> <td>0.00</td> <td>70B</td> <td>0B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org1.example.com-marbles-v0</td> <td>6.6MB</td> <td>6.6MB</td> <td>13.31</td> <td>1.90</td> <td>1013.8KB</td> <td>959.7KB</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org2.example.com-marbles-v0</td> <td>6.5MB</td> <td>6.4MB</td> <td>11.37</td> <td>1.89</td> <td>1.0MB</td> <td>973.7KB</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>peer0.org2.example.com</td> <td>199.8MB</td> <td>199.5MB</td> <td>27.43</td> <td>9.79</td> <td>1.4MB</td> <td>1.3MB</td> <td>72.0KB</td> <td>672.0KB</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>peer0.org1.example.com</td> <td>173.2MB</td> <td>172.9MB</td> <td>30.76</td> <td>10.36</td> <td>1.4MB</td> <td>1.3MB</td> <td>24.0KB</td> <td>672.0KB</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>ca.org2.example.com</td> <td>11.9MB</td> <td>11.9MB</td> <td>0.00</td> <td>0.00</td> <td>70B</td> <td>0B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>ca.org1.example.com</td> <td>9.4MB</td> <td>9.4MB</td> <td>0.00</td> <td>0.00</td> <td>70B</td> <td>0B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>orderer.example.com</td> <td>17.9MB</td> <td>17.3MB</td> <td>1.76</td> <td>0.35</td> <td>401.9KB</td> <td>782.1KB</td> <td>0B</td> <td>440.0KB</td>
+                        </tr>
+                    </table>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                    <table>
+                        <tr>
+                             <th>Type</th> <th>Name</th> <th>Memory(max)</th> <th>Memory(avg)</th> <th>CPU% (max)</th> <th>CPU% (avg)</th>
+                        </tr>
+                        <tr>
+                             <td>Process</td> <td>node fabricClientWorker.js(avg)</td> <td>166.6MB</td> <td>166.5MB</td> <td>1.58</td> <td>0.13</td>
+                        </tr>
+                    </table>
+                    </tr>
+                </table>
+        </div>
+        <div id="query">
+            <h3>query</h3>
+            <p></p>
+                <h3>round 0</h3>
+                <strong class="tag">Performance metrics</strong>
+                <table>
+                    <tr>
+                         <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
+                    </tr>
+                    <tr>
+                         <td>query</td> <td>0</td> <td>5</td> <td>625.0</td> <td>0.00</td> <td>100000.00</td> <td>NaN</td> <td>0.0</td>
+                    </tr>
+                </table>
+                <strong class="tag">Resource consumption</strong>
+                <table>
+                    <tr>
+                    <table>
+                        <tr>
+                             <th>Type</th> <th>Name</th> <th>Memory(max)</th> <th>Memory(avg)</th> <th>CPU% (max)</th> <th>CPU% (avg)</th> <th>Traffic In</th> <th>Traffic Out</th> <th>Disc Read</th> <th>Disc Write</th>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org1.example.com-smallbank-v0</td> <td>5.7MB</td> <td>5.7MB</td> <td>0.00</td> <td>0.00</td> <td>0B</td> <td>0B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org2.example.com-smallbank-v0</td> <td>5.9MB</td> <td>5.9MB</td> <td>0.00</td> <td>0.00</td> <td>0B</td> <td>0B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org1.example.com-simple-v0</td> <td>5.5MB</td> <td>5.5MB</td> <td>0.00</td> <td>0.00</td> <td>0B</td> <td>0B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org2.example.com-simple-v0</td> <td>5.5MB</td> <td>5.5MB</td> <td>0.00</td> <td>0.00</td> <td>0B</td> <td>0B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org1.example.com-drm-v0</td> <td>5.7MB</td> <td>5.7MB</td> <td>0.00</td> <td>0.00</td> <td>84B</td> <td>84B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org2.example.com-drm-v0</td> <td>5.7MB</td> <td>5.7MB</td> <td>0.00</td> <td>0.00</td> <td>84B</td> <td>84B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org1.example.com-marbles-v0</td> <td>6.6MB</td> <td>6.6MB</td> <td>0.00</td> <td>0.00</td> <td>8.6KB</td> <td>3.4KB</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org2.example.com-marbles-v0</td> <td>6.5MB</td> <td>6.5MB</td> <td>0.00</td> <td>0.00</td> <td>8.9KB</td> <td>3.8KB</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>peer0.org2.example.com</td> <td>199.8MB</td> <td>199.8MB</td> <td>8.40</td> <td>7.27</td> <td>11.4KB</td> <td>12.3KB</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>peer0.org1.example.com</td> <td>173.2MB</td> <td>173.2MB</td> <td>15.27</td> <td>9.44</td> <td>10.9KB</td> <td>11.9KB</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>ca.org2.example.com</td> <td>11.9MB</td> <td>11.9MB</td> <td>0.00</td> <td>0.00</td> <td>0B</td> <td>0B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>ca.org1.example.com</td> <td>9.4MB</td> <td>9.4MB</td> <td>0.00</td> <td>0.00</td> <td>0B</td> <td>0B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>orderer.example.com</td> <td>17.9MB</td> <td>17.9MB</td> <td>0.00</td> <td>0.00</td> <td>0B</td> <td>0B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                    </table>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                    <table>
+                        <tr>
+                             <th>Type</th> <th>Name</th> <th>Memory(max)</th> <th>Memory(avg)</th> <th>CPU% (max)</th> <th>CPU% (avg)</th>
+                        </tr>
+                        <tr>
+                             <td>Process</td> <td>node fabricClientWorker.js(avg)</td> <td>135.6MB</td> <td>135.6MB</td> <td>1.94</td> <td>0.34</td>
+                        </tr>
+                    </table>
+                    </tr>
+                </table>
+        </div>
+        <div id="getHistoryForMarble">
+            <h3>getHistoryForMarble</h3>
+            <p></p>
+                <h3>round 0</h3>
+                <strong class="tag">Performance metrics</strong>
+                <table>
+                    <tr>
+                         <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
+                    </tr>
+                    <tr>
+                         <td>getHistoryForMarble</td> <td>500</td> <td>0</td> <td>5.0</td> <td>0.32</td> <td>0.27</td> <td>0.30</td> <td>5.0</td>
+                    </tr>
+                </table>
+                <strong class="tag">Resource consumption</strong>
+                <table>
+                    <tr>
+                    <table>
+                        <tr>
+                             <th>Type</th> <th>Name</th> <th>Memory(max)</th> <th>Memory(avg)</th> <th>CPU% (max)</th> <th>CPU% (avg)</th> <th>Traffic In</th> <th>Traffic Out</th> <th>Disc Read</th> <th>Disc Write</th>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org1.example.com-smallbank-v0</td> <td>5.7MB</td> <td>5.7MB</td> <td>0.00</td> <td>0.00</td> <td>331B</td> <td>191B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org2.example.com-smallbank-v0</td> <td>5.9MB</td> <td>5.9MB</td> <td>0.03</td> <td>0.00</td> <td>331B</td> <td>191B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org1.example.com-simple-v0</td> <td>5.7MB</td> <td>5.7MB</td> <td>0.56</td> <td>0.01</td> <td>470B</td> <td>466B</td> <td>152.0KB</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org2.example.com-simple-v0</td> <td>5.6MB</td> <td>5.6MB</td> <td>0.13</td> <td>0.00</td> <td>498B</td> <td>424B</td> <td>112.0KB</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org1.example.com-drm-v0</td> <td>5.8MB</td> <td>5.7MB</td> <td>0.07</td> <td>0.00</td> <td>237B</td> <td>233B</td> <td>4.0KB</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org2.example.com-drm-v0</td> <td>5.7MB</td> <td>5.7MB</td> <td>0.03</td> <td>0.00</td> <td>307B</td> <td>233B</td> <td>4.0KB</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org1.example.com-marbles-v0</td> <td>6.8MB</td> <td>6.7MB</td> <td>1.72</td> <td>0.80</td> <td>1.1MB</td> <td>627.0KB</td> <td>96.0KB</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org2.example.com-marbles-v0</td> <td>6.7MB</td> <td>6.6MB</td> <td>1.57</td> <td>0.82</td> <td>1.1MB</td> <td>632.9KB</td> <td>20.0KB</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>peer0.org2.example.com</td> <td>202.4MB</td> <td>201.2MB</td> <td>14.51</td> <td>11.09</td> <td>3.6MB</td> <td>2.5MB</td> <td>24.0KB</td> <td>4.6MB</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>peer0.org1.example.com</td> <td>176.1MB</td> <td>174.7MB</td> <td>14.54</td> <td>11.27</td> <td>3.6MB</td> <td>2.4MB</td> <td>0B</td> <td>4.6MB</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>ca.org2.example.com</td> <td>11.9MB</td> <td>11.9MB</td> <td>0.00</td> <td>0.00</td> <td>140B</td> <td>0B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>ca.org1.example.com</td> <td>9.4MB</td> <td>9.4MB</td> <td>0.00</td> <td>0.00</td> <td>140B</td> <td>0B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>orderer.example.com</td> <td>20.4MB</td> <td>19.2MB</td> <td>4.44</td> <td>2.09</td> <td>2.4MB</td> <td>4.6MB</td> <td>104.0KB</td> <td>2.9MB</td>
+                        </tr>
+                    </table>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                    <table>
+                        <tr>
+                             <th>Type</th> <th>Name</th> <th>Memory(max)</th> <th>Memory(avg)</th> <th>CPU% (max)</th> <th>CPU% (avg)</th>
+                        </tr>
+                        <tr>
+                             <td>Process</td> <td>node fabricClientWorker.js(avg)</td> <td>134.2MB</td> <td>117.5MB</td> <td>5.18</td> <td>1.19</td>
+                        </tr>
+                    </table>
+                    </tr>
+                </table>
+        </div>
+        <div id="delete">
+            <h3>delete</h3>
+            <p></p>
+                <h3>round 0</h3>
+                <strong class="tag">Performance metrics</strong>
+                <table>
+                    <tr>
+                         <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
+                    </tr>
+                    <tr>
+                         <td>delete</td> <td>500</td> <td>0</td> <td>5.0</td> <td>0.32</td> <td>0.28</td> <td>0.30</td> <td>5.0</td>
+                    </tr>
+                </table>
+                <strong class="tag">Resource consumption</strong>
+                <table>
+                    <tr>
+                    <table>
+                        <tr>
+                             <th>Type</th> <th>Name</th> <th>Memory(max)</th> <th>Memory(avg)</th> <th>CPU% (max)</th> <th>CPU% (avg)</th> <th>Traffic In</th> <th>Traffic Out</th> <th>Disc Read</th> <th>Disc Write</th>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org1.example.com-smallbank-v0</td> <td>5.8MB</td> <td>5.7MB</td> <td>0.19</td> <td>0.01</td> <td>321B</td> <td>317B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org2.example.com-smallbank-v0</td> <td>6.0MB</td> <td>6.0MB</td> <td>0.06</td> <td>0.00</td> <td>321B</td> <td>317B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org1.example.com-simple-v0</td> <td>5.7MB</td> <td>5.7MB</td> <td>0.25</td> <td>0.01</td> <td>167B</td> <td>233B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org2.example.com-simple-v0</td> <td>5.7MB</td> <td>5.7MB</td> <td>0.53</td> <td>0.01</td> <td>237B</td> <td>233B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org1.example.com-drm-v0</td> <td>5.8MB</td> <td>5.8MB</td> <td>0.04</td> <td>0.00</td> <td>237B</td> <td>233B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org2.example.com-drm-v0</td> <td>5.7MB</td> <td>5.7MB</td> <td>0.21</td> <td>0.01</td> <td>237B</td> <td>233B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org1.example.com-marbles-v0</td> <td>6.9MB</td> <td>6.8MB</td> <td>1.90</td> <td>0.94</td> <td>1.0MB</td> <td>477.7KB</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>dev-peer0.org2.example.com-marbles-v0</td> <td>6.8MB</td> <td>6.7MB</td> <td>1.51</td> <td>0.88</td> <td>1023.8KB</td> <td>476.1KB</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>peer0.org2.example.com</td> <td>204.8MB</td> <td>203.6MB</td> <td>16.09</td> <td>11.80</td> <td>3.2MB</td> <td>1.9MB</td> <td>44.0KB</td> <td>4.5MB</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>peer0.org1.example.com</td> <td>178.7MB</td> <td>177.4MB</td> <td>15.41</td> <td>11.76</td> <td>3.2MB</td> <td>1.9MB</td> <td>0B</td> <td>4.5MB</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>ca.org2.example.com</td> <td>11.9MB</td> <td>11.4MB</td> <td>0.00</td> <td>0.00</td> <td>0B</td> <td>0B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>ca.org1.example.com</td> <td>9.4MB</td> <td>9.0MB</td> <td>0.28</td> <td>0.01</td> <td>0B</td> <td>0B</td> <td>0B</td> <td>0B</td>
+                        </tr>
+                        <tr>
+                             <td>Docker</td> <td>orderer.example.com</td> <td>22.4MB</td> <td>21.4MB</td> <td>3.92</td> <td>2.19</td> <td>2.2MB</td> <td>4.2MB</td> <td>0B</td> <td>2.7MB</td>
+                        </tr>
+                    </table>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                    <table>
+                        <tr>
+                             <th>Type</th> <th>Name</th> <th>Memory(max)</th> <th>Memory(avg)</th> <th>CPU% (max)</th> <th>CPU% (avg)</th>
+                        </tr>
+                        <tr>
+                             <td>Process</td> <td>node fabricClientWorker.js(avg)</td> <td>118.4MB</td> <td>114.9MB</td> <td>6.54</td> <td>1.22</td>
+                        </tr>
+                    </table>
+                    </tr>
+                </table>
+        </div>
+        <div>
+            <h3>Test Environment</h3>
+            <strong class="tag">benchmark config</strong>
+            <pre id="benchmarkInfo" style="overflow: visible;white-space: pre-wrap;max-height:100%;">{
+  &quot;clients&quot;: {
+    &quot;type&quot;: &quot;local&quot;,
+    &quot;number&quot;: 5
+  },
+  &quot;rounds&quot;: [
+    {
+      &quot;label&quot;: &quot;init&quot;,
+      &quot;txNumber&quot;: [
+        500
+      ],
+      &quot;rateControl&quot;: [
+        {
+          &quot;type&quot;: &quot;fixed-rate&quot;,
+          &quot;opts&quot;: {
+            &quot;tps&quot;: 25
+          }
+        }
+      ],
+      &quot;callback&quot;: &quot;benchmarks&#x2F;samples&#x2F;fabric&#x2F;marbles&#x2F;init.js&quot;
+    },
+    {
+      &quot;label&quot;: &quot;transferMarblesBasedOnColor&quot;,
+      &quot;txNumber&quot;: [
+        28
+      ],
+      &quot;rateControl&quot;: [
+        {
+          &quot;type&quot;: &quot;fixed-rate&quot;,
+          &quot;opts&quot;: {
+            &quot;tps&quot;: 1
+          }
+        }
+      ],
+      &quot;callback&quot;: &quot;benchmarks&#x2F;samples&#x2F;fabric&#x2F;marbles&#x2F;transferMarblesBasedOnColor.js&quot;
+    },
+    {
+      &quot;label&quot;: &quot;query&quot;,
+      &quot;txNumber&quot;: [
+        5
+      ],
+      &quot;rateControl&quot;: [
+        {
+          &quot;type&quot;: &quot;fixed-rate&quot;,
+          &quot;opts&quot;: {
+            &quot;tps&quot;: 1
+          }
+        }
+      ],
+      &quot;callback&quot;: &quot;benchmarks&#x2F;samples&#x2F;fabric&#x2F;marbles&#x2F;query.js&quot;
+    },
+    {
+      &quot;label&quot;: &quot;getHistoryForMarble&quot;,
+      &quot;txNumber&quot;: [
+        500
+      ],
+      &quot;rateControl&quot;: [
+        {
+          &quot;type&quot;: &quot;fixed-rate&quot;,
+          &quot;opts&quot;: {
+            &quot;tps&quot;: 5
+          }
+        }
+      ],
+      &quot;callback&quot;: &quot;benchmarks&#x2F;samples&#x2F;fabric&#x2F;marbles&#x2F;getHistoryForMarble.js&quot;
+    },
+    {
+      &quot;label&quot;: &quot;delete&quot;,
+      &quot;txNumber&quot;: [
+        500
+      ],
+      &quot;rateControl&quot;: [
+        {
+          &quot;type&quot;: &quot;fixed-rate&quot;,
+          &quot;opts&quot;: {
+            &quot;tps&quot;: 5
+          }
+        }
+      ],
+      &quot;callback&quot;: &quot;benchmarks&#x2F;samples&#x2F;fabric&#x2F;marbles&#x2F;delete.js&quot;
+    }
+  ]
+}</pre>
+            <strong class="tag">SUT</strong>
+            <pre id="sutdetails">not provided</pre>
+        </div>
+    </div>
+
+
+</main>
+
+</body>
+</html>
